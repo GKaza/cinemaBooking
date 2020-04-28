@@ -1,5 +1,5 @@
-const seats = [];
 const rows = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" ];
+let seats = new Map();
 
 for (let r = 0; r < 10; r += 1) {
     for (let x = 1; x < 21; x += 1) {
@@ -9,7 +9,7 @@ for (let r = 0; r < 10; r += 1) {
             number : x,
             available : true
         }
-        seats.push(obj)
+        seats.set(obj["id"], obj)
     }
 }
 
@@ -20,11 +20,11 @@ console.log(seats)
 
 
 
-
 function onLoaderFunc()
 {
   $(".seatStructure *").prop("disabled", true);
   $(".displayerBoxes *").prop("disabled", true);
+  $("#bookSeats").prop("disabled", true);
 }
 function takeData()
 {
@@ -41,7 +41,7 @@ function takeData()
 }
 
 
-function updateTextArea() { 
+function bookSeats() { 
     
   if ($("input:checked").length == ($("#Numseats").val()))
     {
@@ -70,48 +70,50 @@ function updateTextArea() {
   }
 
 
-function myFunction() {
-  alert($("input:checked").length);
-}
-
-/*
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-*/
+//
 
 
 $(":checkbox").click(function() {
-  let wantedSeats = $("#Numseats").val();
+  $(":checked").prop('checked', false);
+  let wantedSeats = parseInt($("#Numseats").val());
   let id = $(this).val();
-  $(":checkbox").prop('disabled', true);
-  let index = 0;
-  
-  for (let i = 0; i < array.length; i++) {
-    const element = array[index];
-    
+  let row = seats.get(id).row
+  let number = seats.get(id).number
+  let firstSeat = number - (wantedSeats - 1);
+  let allSeatsAvailable = false;
+  let set = [];
+  if (firstSeat < 1) {
+    firstSeat = 1;
   }
 
+  
+  while (allSeatsAvailable == false && firstSeat <= number) {
+    if (firstSeat + wantedSeats > 21) {
+      break;
+    }
+    let setAvailable = true;
+    for (let i = 0; i < wantedSeats; i += 1) {
+      let seatId = row + (firstSeat + i);
+      if (!seats.get(seatId).available) {
+        setAvailable = false;
+        break;
+      } else {
+        set[i] = seatId;
+      }
+    }
+    allSeatsAvailable = setAvailable;
+    firstSeat += 1;
+  }
 
-  // if ($("input:checked").length == ($("#Numseats").val())) {
-  //   $(":checkbox").prop('disabled', true);
-  //   $(':checked').prop('disabled', false);
-  // }
-  // else
-  //   {
-  //     $(":checkbox").prop('disabled', false);
-  //   }
+  if (allSeatsAvailable == true) {
+  $("#bookSeats").prop("disabled", false);
+    for (let i = 0; i < set.length; i += 1) {
+      $( "input[value = " + set[i] + "]" ).prop( "checked", true );
+    }
+  }
+
+  console.log(set)
+
 });
 
 
