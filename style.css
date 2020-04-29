@@ -1,51 +1,20 @@
 body
 {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  
+  padding: 3%;
+  background-color: #ebedee;
 }
 
 #Username, #Numseats
 {
   border:none;
-  border-bottom:1px solid;
+  background-color: #e2e2e2;
 }
 
 .reserved::before
 {
-  background:Red !important;
+  background:#E34234 !important;
 }
-
-.smallBox::before
-{
-  content:".";
-  width:15px;
-  height:15px;
-  float:left;
-  margin-right:10px;
-}
-.greenBox::before
-{
-  content:"";
-  background:Green;
-}
-.redBox::before
-{
-  content:"";
-  background:Red;
-}
-.emptyBox::before
-{
-  content:"";
-  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-    background-color:#ccc;
-}
-
-.seats
-{
-  border:1px solid red;background:yellow;
-} 
-
-
 
 .seatGap
 {
@@ -58,23 +27,21 @@ table
   text-align:center;
 }
 
-
 .Displaytable
 {
   text-align:center;
 }
+
 .Displaytable td, .Displaytable th {
     border: 1px solid;
-    text-align: left;
+    border-color: #e2e2e2;
+    text-align: center;
 }
 
-textarea
+#notification>b
 {
-  border:none;
-  background:transparent;
+  margin-bottom:0px;
 }
-
-
 
 input[type=checkbox] {
     width:0px;
@@ -88,11 +55,26 @@ input[type=checkbox]:before {
     display: inline-block;
     vertical-align:middle;
     text-align: center;
-    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-    background-color:#ccc;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 238, 238, 0.8);
+    background-color:rgb(236, 236, 236);
 }
 
 input[type=checkbox]:checked:before {
-    background-color:Green;
+    background-color:#7FFF00;
     font-size: 15px;
+}
+
+.btn {
+  color: rgb(255, 255, 255);
+  background-color: #4B9CD3;
+  padding: 1%;
+  border-radius: 30px;
+}
+.btn:hover { 
+  background-color: rgb(73, 150, 201); 
+}
+
+button:disabled {
+  cursor: not-allowed;
+  color: rgb(190, 190, 190);
 }

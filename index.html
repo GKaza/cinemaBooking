@@ -17,27 +17,18 @@
           Name *: <input type="text" id="Username" required>
           Number of Seats *: <input type="text" id="Numseats" required>
           <br/><br/>
-          <button onclick="takeData()">Proceed to seat selection</button>
+          <button id="takeData" class="btn" onclick="takeData()">Proceed to seat selection</button>
           <br/><br/>
         </center>
         </div>
-          
+        
         
         <div class="seatStructure">
         <center>
           
         <table id="seatsBlock">
          <p id="notification"></p>
-          <!-- <tr>
-            <td colspan="22"><div class="screen">SCREEN</div></td>
-            <td rowspan="20">
-              <div class="smallBox greenBox">Selected Seat</div> <br/>
-              <div class="smallBox redBox">Reserved Seat</div><br/>
-              <div class="smallBox emptyBox">Empty Seat</div><br/>
-            </td>
-            
-            <br/>
-          </tr> -->
+         <br/>
           
           <tr>
             <td></td>
@@ -343,9 +334,9 @@
             <th>Seats</th>
           </tr>
           <tr>
-            <td><textarea id="nameDisplay"></textarea></td>
-            <td><textarea id="NumberDisplay"></textarea></td>
-            <td><textarea id="seatsDisplay"></textarea></td>
+            <td id="nameDisplay"></td>
+            <td id="NumberDisplay"></td>
+            <td id="seatsDisplay"></td>
           </tr>
         </table>
         </center>

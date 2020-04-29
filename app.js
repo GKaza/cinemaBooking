@@ -20,17 +20,11 @@ for (let r = 0; r < 10; r += 1) {
 
 if (reserved) {
   for (let i = 0; i < reserved.length; i += 1) {
-    console.log(reserved)
     seats.get(reserved[i]).available = false;
   }
 } else {
   reserved = [];
 }
-
-
-console.log(seats)
-
-
 
 
 //
@@ -46,54 +40,51 @@ function onLoaderFunc() {
       $("input[value = " + x.id + "]").addClass("reserved").prop("disabled", true);
     }
   });
+  $(".displayerBoxes").hide();
 }
+
 function takeData() {
   if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
-    alert("Please Enter your Name and Number of Seats");
+    swal("Cannot proceed!", "Please enter your name and the ammount of wanted seats.", "warning");
   }
   else {
     $(".inputForm *").prop("disabled", true);
     $(".seatStructure *").prop("disabled", false);
-    document.getElementById("notification").innerHTML = "<b style='margin-bottom:0px;background:yellow;'>Please Select your Seats NOW!</b>";
+    $("#bookSeats").addClass("btn")
+    $("#notification").html("<b>Please Select your Seats</b>");
   }
 }
-
 
 function bookSeats() {
+  if (set.length) {
 
-  $(".seatStructure *").prop("disabled", true);
+    $(".seatStructure *").prop("disabled", true);
 
 
-  for (let i = 0; i < set.length; i += 1) {
-    seats.get(set[i]).available = false;
+    for (let i = 0; i < set.length; i += 1) {
+      seats.get(set[i]).available = false;
+    }
+
+    let setText = set.join(", ")
+    //Display
+    $('#nameDisplay').html($("#Username").val());
+    $('#NumberDisplay').html($("#Numseats").val());
+    $('#seatsDisplay').html(setText);
+
+  $(".displayerBoxes").show();
+
+    localStorage.setItem("reserved", JSON.stringify(reserved.concat(set)));
+    swal("Successful Booking, " + $("#Username").val() + "!", "Your seats are " + set + ".", "success");
+  } else {
+    swal("Cannot proceed with the booking!", "Please pick your seat.", "error");
   }
-
-  let allNameVals = [];
-  let allNumberVals = [];
-
-  //Storing in Array
-  allNameVals.push($("#Username").val());
-  allNumberVals.push($("#Numseats").val());
-
-
-  //Displaying 
-  $('#nameDisplay').val(allNameVals);
-  $('#NumberDisplay').val(allNumberVals);
-  $('#seatsDisplay').val(set);
-
-  // alert("Please select " + ($("#Numseats").val()) + " seats")
-
-  localStorage.setItem("reserved", JSON.stringify(reserved.concat(set)));
-  swal("Successful Booking, " + $("#Username").val() + "!", "Your seats are " + set + ".", "success");
-
 }
-
-
 //
 
 
 $(":checkbox").click(function () {
   $(":checked").prop('checked', false);
+  set = [];
   let wantedSeats = parseInt($("#Numseats").val());
   let id = $(this).val();
   let row = seats.get(id).row
@@ -101,38 +92,40 @@ $(":checkbox").click(function () {
   let firstSeat = number - (wantedSeats - 1);
   let allSeatsAvailable = false;
 
-  if (firstSeat < 1) {
-    firstSeat = 1;
-  }
-
-
-  while (allSeatsAvailable == false && firstSeat <= number) {
-    if (firstSeat + wantedSeats > 21) {
-      break;
+  if (seats.get(id).available) {
+    if (firstSeat < 1) {
+      firstSeat = 1;
     }
-    let setAvailable = true;
-    for (let i = 0; i < wantedSeats; i += 1) {
-      let seatId = row + (firstSeat + i);
-      if (!seats.get(seatId).available) {
-        setAvailable = false;
+  
+  
+    while (allSeatsAvailable == false && firstSeat <= number) {
+      if (firstSeat + wantedSeats > 21) {
         break;
-      } else {
-        set[i] = seatId;
+      }
+      let setAvailable = true;
+      for (let i = 0; i < wantedSeats; i += 1) {
+        let seatId = row + (firstSeat + i);
+        if (!seats.get(seatId).available) {
+          setAvailable = false;
+          break;
+        } else {
+          set[i] = seatId;
+        }
+      }
+      allSeatsAvailable = setAvailable;
+      firstSeat += 1;
+    }
+  
+    if (allSeatsAvailable == true) {
+      $("#bookSeats").prop("disabled", false);
+      for (let i = 0; i < set.length; i += 1) {
+        $("input[value = " + set[i] + "]").prop("checked", true);
       }
     }
-    allSeatsAvailable = setAvailable;
-    firstSeat += 1;
+  } else {
+    swal("Seat already reserved!", "Make sure the seat you are trying to select is available.", "error");
   }
-
-  if (allSeatsAvailable == true) {
-    $("#bookSeats").prop("disabled", false);
-    for (let i = 0; i < set.length; i += 1) {
-      $("input[value = " + set[i] + "]").prop("checked", true);
-    }
-  }
-
   console.log(set)
-
 });
 
 
