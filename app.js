@@ -56,7 +56,7 @@ function onLoaderFunc() {
 }
 
 function takeData() {
-  if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
+  if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0) || (isNaN($("#Numseats").val()))) {
     swal("Cannot proceed!", "Please enter your name and the ammount of wanted seats.", "warning");
   } else if (($("#Numseats").val() > 20) || ($("#Numseats").val() < 1)) {
     swal("Cannot proceed!", "Ammount of wanted seats is unavailable.", "warning");
