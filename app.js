@@ -2,8 +2,14 @@ const rows = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 let seats = new Map();
 let set = [];
 let reserved = JSON.parse(localStorage.getItem("reserved"));
+let max = new Map();
+let maxRow = 0;
 
 // localStorage.removeItem("reserved")
+
+for (let i = 0; i < rows.length; i += 1) {
+  max.set(rows[i], 20);
+}
 
 for (let r = 0; r < 10; r += 1) {
   for (let x = 1; x < 21; x += 1) {
@@ -20,15 +26,21 @@ for (let r = 0; r < 10; r += 1) {
 
 if (reserved) {
   for (let i = 0; i < reserved.length; i += 1) {
-    seats.get(reserved[i]).available = false;
+    let sget = seats.get(reserved[i]);
+    sget.available = false;
+    max.set(sget.row, max.get(sget.row) - 1);
   }
 } else {
   reserved = [];
 }
 
+for (let i = 0; i < rows.length; i++) {
+  if (max.get(rows[i]) > maxRow) {
+    maxRow = max.get(rows[i]);
+  }
+}
 
 //
-
 
 
 function onLoaderFunc() {
@@ -46,6 +58,10 @@ function onLoaderFunc() {
 function takeData() {
   if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
     swal("Cannot proceed!", "Please enter your name and the ammount of wanted seats.", "warning");
+  } else if (($("#Numseats").val() > 20) || ($("#Numseats").val() < 1)) {
+    swal("Cannot proceed!", "Ammount of wanted seats is unavailable.", "warning");
+  } else if (($("#Numseats").val() > maxRow)) {
+    swal("Cannot proceed!", "Number of seats is currently not available in a single row.", "warning");
   }
   else {
     $(".inputForm *").prop("disabled", true);
