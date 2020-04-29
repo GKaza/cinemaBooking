@@ -10,7 +10,6 @@ The cinema room has 200 seats: 20 seats per row, 10 rows.
 
 Each seat has its own unique id which is a letter and a number. The letters represent rows, the numbers is the seat number. For example, A1 is the first seat in the first row.
 
-[Example Seat Map](https://www.notion.so/b4b285bd8d194b259b32d90c6320424c)
 
 ## Booking process
 
