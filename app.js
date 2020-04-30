@@ -53,6 +53,7 @@ function onLoaderFunc() {
     }
   });
   $(".displayerBoxes").hide();
+  $(".endBtns").hide();
 }
 
 function takeData() {
@@ -87,7 +88,8 @@ function bookSeats() {
     $('#NumberDisplay').html($("#Numseats").val());
     $('#seatsDisplay').html(setText);
 
-  $(".displayerBoxes").show();
+    $(".displayerBoxes").show();
+    $(".endBtns").show();
 
     localStorage.setItem("reserved", JSON.stringify(reserved.concat(set)));
     swal("Successful Booking, " + $("#Username").val() + "!", "Your seats are " + set + ".", "success");
@@ -112,8 +114,8 @@ $(":checkbox").click(function () {
     if (firstSeat < 1) {
       firstSeat = 1;
     }
-  
-  
+
+
     while (allSeatsAvailable == false && firstSeat <= number) {
       if (firstSeat + wantedSeats > 21) {
         break;
@@ -131,7 +133,7 @@ $(":checkbox").click(function () {
       allSeatsAvailable = setAvailable;
       firstSeat += 1;
     }
-  
+
     if (allSeatsAvailable == true) {
       $("#bookSeats").prop("disabled", false);
       for (let i = 0; i < set.length; i += 1) {

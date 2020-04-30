@@ -13,18 +13,15 @@
     <body onload="onLoaderFunc()">
 
         <div class="inputForm">
-        <center>
           Name *: <input type="text" id="Username" required>
           Number of Seats *: <input type="text" id="Numseats" required>
           <br/><br/>
           <button id="takeData" class="btn" onclick="takeData()">Proceed to seat selection</button>
           <br/><br/>
-        </center>
         </div>
         
         
         <div class="seatStructure">
-        <center>
           
         <table id="seatsBlock">
          <p id="notification"></p>
@@ -320,13 +317,11 @@
         </table>
           
         <br/><button id="bookSeats" onclick="bookSeats()">Book your seats</button>
-        </center>
         </div>
               
         <br/><br/>
         
         <div class="displayerBoxes">
-        <center>
           <table class="Displaytable">
           <tr>
             <th>Name</th>
@@ -339,7 +334,11 @@
             <td id="seatsDisplay"></td>
           </tr>
         </table>
-        </center>
+        </div>
+        <br>
+        <div class="endBtns">
+          <button class="btn2" onclick="location.href = 'https://www.netflix.com/'">Go</button>
+          <button class="btn2" onClick="window.location.reload();">Make new booking</button>
         </div>
         
          

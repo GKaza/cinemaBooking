@@ -3,6 +3,7 @@ body
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   padding: 3%;
   background-color: #ebedee;
+  text-align: center;
 }
 
 #Username, #Numseats
@@ -22,10 +23,10 @@ body
   width:20px;
 }
 
-
 table
 {
-  text-align:center;
+  text-align: center;
+  margin: auto;
 }
 
 .Displaytable
@@ -78,4 +79,14 @@ input[type=checkbox]:checked:before {
 button:disabled {
   cursor: not-allowed;
   color: rgb(190, 190, 190);
+}
+
+.btn2 {
+  color: rgb(255, 255, 255);
+  background-color: #7FFF00;
+  padding: 1%;
+  border-radius: 30px;
+}
+.btn2:hover { 
+  background-color: rgb(119, 238, 0); 
 }
