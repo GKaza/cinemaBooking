@@ -1,15 +1,31 @@
+html {
+  height: 100%;
+}
+
 body
 {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: rgb(255, 255, 255);
   padding: 3%;
-  background-color: #ebedee;
   text-align: center;
+  /* background-color: #ebedee; */
+  
+  /* The image used */
+  background-image: url("https://wallpaperaccess.com/full/1679635.jpg");
+  
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #Username, #Numseats
 {
   border:none;
-  background-color: #e2e2e2;
+  background-color: rgb(236, 236, 236);
 }
 
 .reserved::before
@@ -48,6 +64,10 @@ table
 input[type=checkbox] {
     width:0px;
     margin-right:18px;
+}
+
+input[type=checkbox]:disabled {
+  cursor: not-allowed;
 }
 
 input[type=checkbox]:before {

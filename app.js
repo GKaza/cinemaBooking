@@ -46,7 +46,7 @@ for (let i = 0; i < rows.length; i++) {
 function onLoaderFunc() {
   $(".seatStructure *").prop("disabled", true);
   $(".displayerBoxes *").prop("disabled", true);
-  $("#bookSeats").prop("disabled", true);
+  $("#bookSeats").prop("disabled", true).hide();
   seats.forEach(x => {
     if (x.available == false) {
       $("input[value = " + x.id + "]").addClass("reserved").prop("disabled", true);
@@ -102,6 +102,7 @@ function bookSeats() {
 
 $(":checkbox").click(function () {
   $(":checked").prop('checked', false);
+  $("#bookSeats").prop("disabled", true).hide();
   set = [];
   let wantedSeats = parseInt($("#Numseats").val());
   let id = $(this).val();
@@ -135,10 +136,12 @@ $(":checkbox").click(function () {
     }
 
     if (allSeatsAvailable == true) {
-      $("#bookSeats").prop("disabled", false);
+      $("#bookSeats").prop("disabled", false).show();
       for (let i = 0; i < set.length; i += 1) {
         $("input[value = " + set[i] + "]").prop("checked", true);
       }
+    } else {
+      swal("Seat selection unavailable!", "Not enough space to fit you and your friends.", "warning")
     }
   } else {
     swal("Seat already reserved!", "Make sure the seat you are trying to select is available.", "error");
