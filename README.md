@@ -1,7 +1,7 @@
 # cinema-booking
 Basic functionality preview:
 
-<a href="https://imgflip.com/gif/3z8ofr"><img width="260" height="139" src="https://i.imgflip.com/3z8ofr.gif"></a>
+<a href="https://imgflip.com/gif/3z8ofr"><img src="https://i.imgflip.com/3z8ofr.gif"></a>
 
 
 # 1. Seat Booking application
