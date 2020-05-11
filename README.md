@@ -1,8 +1,8 @@
-# cinema-booking
+# cinemaBooking
+
 Basic functionality preview:
 
 <a href="https://imgflip.com/gif/3z8ofr"><img src="https://i.imgflip.com/3z8ofr.gif"></a>
-
 
 # Seat Booking application
 
@@ -12,14 +12,13 @@ The cinema room has 200 seats: 20 seats per row, 10 rows.
 
 Each seat has its own unique id which is a letter and a number. The letters represent rows, the numbers is the seat number. For example, A1 is the first seat in the first row.
 
-
 ## Booking process
 
 1. users enter their name and the amount of seats they want to book
 2. the user should be able to choose a seat by clicking the click a box on the seat map
 3. the amount of seats (defined in 1.) are selected/shown and include the selected seats in 2
 4. user clicks Book Seats
-    1. user gets swal confirming purchase
+    1. user gets [swal](https://sweetalert.js.org/guides/) confirming purchase
 5. user is presented a receipt with the purchase, mentioning the booked seats. Here we ask them if they want to make another booking or just go
     1. user clicks go → redirect user to netflix.com
     2. user clicks place another order → display the form again, starting from the step 1.
