@@ -28,6 +28,7 @@ Each seat has its own unique id which is a letter and a number. The letters repr
 
 - users cannot book seats that are already reserved
 - when clicking on a free seat and there are not enough seats around for their friends display a [swal](https://sweetalert.js.org/guides/) saying that it is not possible to fit them there and ask them to choose a seat elsewhere
+- booked seats remain unavailable and are presented as such even after refreshing the page using localStorage for now
 
 ### Seats colors:
 
